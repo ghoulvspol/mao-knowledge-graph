@@ -18,6 +18,9 @@ OUT = Path(__file__).parent / "mao-site"
 SITE_TITLE = "毛泽东知识库"
 SITE_LOGO = "M"
 
+# GitHub Pages base path (empty string for custom domain, "/repo-name" for project pages)
+BASE = "/mao-knowledge-graph"
+
 CATEGORY_DIRS = {
     "selected-works": "selected-works",
     "poems":          "poems",
@@ -87,9 +90,9 @@ def build_link_map(files):
         stem = f["stem"]
         cat  = f["category"]
         if cat == "home":
-            url = "/index.html"
+            url = f"{BASE}/index.html"
         else:
-            url = f"/{cat}/{stem}.html"
+            url = f"{BASE}/{cat}/{stem}.html"
         lmap[stem] = url
         for alias in f["fm"].get("aliases", []):
             if alias not in lmap:
@@ -977,7 +980,7 @@ def build_sidebar_html(files, current_stem=""):
         groups[cat].sort(key=lambda x: x["stem"])
 
     home_active = " active" if current_stem == "欢迎" else ""
-    html = f'<a href="/index.html" class="nav-link nav-home{home_active}">🏛 首页</a>\n'
+    html = f'<a href="{BASE}/index.html" class="nav-link nav-home{home_active}">🏛 首页</a>\n'
 
     order = [
         ("index-pages",    "索引"),
@@ -995,7 +998,7 @@ def build_sidebar_html(files, current_stem=""):
         html += f'  <div class="nav-group-title"><span class="caret"></span>{label}<span class="badge">{len(groups[cat])}</span></div>\n'
         html += f'  <div class="nav-group-items">\n'
         for f in groups[cat]:
-            url = f"/{cat}/{f['stem']}.html"
+            url = f"{BASE}/{cat}/{f['stem']}.html"
             active = " active" if f["stem"] == current_stem else ""
             html += f'    <a href="{url}" class="nav-link{active}" title="{f["stem"]}">{f["stem"]}</a>\n'
         html += '  </div>\n</div>\n'
@@ -1034,11 +1037,11 @@ def wrap_page(title, body_html, files, current_stem="", right_html="", wide=Fals
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title} - 毛泽东知识库</title>
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
-<link rel="shortcut icon" href="/assets/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="{BASE}/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="{BASE}/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{BASE}/assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="{BASE}/assets/favicon-180.png">
+<link rel="shortcut icon" href="{BASE}/assets/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1048,7 +1051,7 @@ def wrap_page(title, body_html, files, current_stem="", right_html="", wide=Fals
 <body>
 <button class="hamburger" aria-label="菜单" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
 <aside class="sidebar">
-  <div class="sidebar-header"><a href="/index.html" class="logo">毛泽东知识库</a></div>
+  <div class="sidebar-header"><a href="{BASE}/index.html" class="logo">毛泽东知识库</a></div>
   <div class="sidebar-nav">
     {sidebar}
   </div>
@@ -1148,46 +1151,46 @@ def build_homepage(files, link_map, ref_counts):
 </section>
 
 <div class="stats-row">
-  <a href="/index-pages/素材总览.html" class="stat-item"><div class="stat-num">{len(work_files)}</div><div class="stat-label">篇选集精选</div></a>
-  <a href="/index-pages/诗词索引.html" class="stat-item"><div class="stat-num">{len(poem_files)}</div><div class="stat-label">首诗词</div></a>
-  <a href="/index-pages/核心思想索引.html" class="stat-item"><div class="stat-num">{len(concept_files)}</div><div class="stat-label">核心思想</div></a>
-  <a href="/index-pages/工作方法索引.html" class="stat-item"><div class="stat-num">{len(method_files)}</div><div class="stat-label">工作方法</div></a>
-  <a href="/index-pages/人物索引.html" class="stat-item"><div class="stat-num">{len(people_files)}</div><div class="stat-label">关键人物</div></a>
+  <a href="{BASE}/index-pages/素材总览.html" class="stat-item"><div class="stat-num">{len(work_files)}</div><div class="stat-label">篇选集精选</div></a>
+  <a href="{BASE}/index-pages/诗词索引.html" class="stat-item"><div class="stat-num">{len(poem_files)}</div><div class="stat-label">首诗词</div></a>
+  <a href="{BASE}/index-pages/核心思想索引.html" class="stat-item"><div class="stat-num">{len(concept_files)}</div><div class="stat-label">核心思想</div></a>
+  <a href="{BASE}/index-pages/工作方法索引.html" class="stat-item"><div class="stat-num">{len(method_files)}</div><div class="stat-label">工作方法</div></a>
+  <a href="{BASE}/index-pages/人物索引.html" class="stat-item"><div class="stat-num">{len(people_files)}</div><div class="stat-label">关键人物</div></a>
 </div>
 
 <div class="main-inner">
 <div class="nav-cards">
-  <a href="/index-pages/素材总览.html" class="nav-card">
+  <a href="{BASE}/index-pages/素材总览.html" class="nav-card">
     <span class="nav-card-icon">📜</span>
     <div class="nav-card-title">选集精选</div>
     <div class="nav-card-sub">{len(work_files)} 篇核心著作</div>
     <span class="nav-card-arrow">{arrow}</span>
   </a>
-  <a href="/index-pages/诗词索引.html" class="nav-card">
+  <a href="{BASE}/index-pages/诗词索引.html" class="nav-card">
     <span class="nav-card-icon">🖋</span>
     <div class="nav-card-title">诗词</div>
     <div class="nav-card-sub">{len(poem_files)} 首经典诗词</div>
     <span class="nav-card-arrow">{arrow}</span>
   </a>
-  <a href="/index-pages/核心思想索引.html" class="nav-card">
+  <a href="{BASE}/index-pages/核心思想索引.html" class="nav-card">
     <span class="nav-card-icon">💡</span>
     <div class="nav-card-title">核心思想</div>
     <div class="nav-card-sub">{len(concept_files)} 个概念</div>
     <span class="nav-card-arrow">{arrow}</span>
   </a>
-  <a href="/index-pages/工作方法索引.html" class="nav-card">
+  <a href="{BASE}/index-pages/工作方法索引.html" class="nav-card">
     <span class="nav-card-icon">⚡</span>
     <div class="nav-card-title">工作方法</div>
     <div class="nav-card-sub">{len(method_files)} 个可操作的实践</div>
     <span class="nav-card-arrow">{arrow}</span>
   </a>
-  <a href="/index-pages/事件索引.html" class="nav-card">
+  <a href="{BASE}/index-pages/事件索引.html" class="nav-card">
     <span class="nav-card-icon">📅</span>
     <div class="nav-card-title">重大事件</div>
     <div class="nav-card-sub">{len(event_files)} 个关键事件</div>
     <span class="nav-card-arrow">{arrow}</span>
   </a>
-  <a href="/index-pages/人物索引.html" class="nav-card">
+  <a href="{BASE}/index-pages/人物索引.html" class="nav-card">
     <span class="nav-card-icon">👤</span>
     <div class="nav-card-title">关键人物</div>
     <div class="nav-card-sub">{len(people_files)} 位关键人物</div>
