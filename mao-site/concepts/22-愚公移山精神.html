@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>22-愚公移山精神 - 毛泽东知识库</title>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<link rel="shortcut icon" href="/assets/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#FAF7F2;
+  --bg2:#F3EDE4;
+  --text:#1B1B18;
+  --text2:#6B6560;
+  --gold:#B8860B;
+  --gold-light:#D4A843;
+  --gold-glow:rgba(184,134,11,.12);
+  --navy:#1A2332;
+  --navy-light:#2C3E50;
+  --cream:#FFF8EE;
+  --border:#E0D6C8;
+  --card:#FFFFFF;
+  --link:#8B5E0B;
+  --red:#C41E3A;
+  --serif:'Noto Serif SC','Crimson Pro',Georgia,'Times New Roman',serif;
+  --sans:'DM Sans',-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+  --sidebar-w:260px;
+}
+
+html{font-size:15px;scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  color:var(--text);
+  background:var(--bg);
+  display:flex;
+  min-height:100vh;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  width:var(--sidebar-w);
+  background:var(--navy);
+  position:fixed;top:0;left:0;bottom:0;
+  overflow-y:auto;
+  z-index:100;
+  display:flex;
+  flex-direction:column;
+}
+.sidebar-header{padding:20px 16px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{
+  color:#fff;
+  font-size:17px;
+  font-weight:700;
+  text-decoration:none;
+  letter-spacing:.5px;
+  font-family:var(--serif);
+  display:block;
+}
+.logo:hover{color:var(--gold-light)}
+
+.sidebar-nav{flex:1;padding:8px 0;overflow-y:auto}
+.sidebar-nav::-webkit-scrollbar{width:4px}
+.sidebar-nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px}
+
+.nav-link{
+  display:block;
+  padding:6px 16px;
+  color:#cbd5e1;
+  text-decoration:none;
+  font-size:13px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  border-left:3px solid transparent;
+  transition:all .15s;
+}
+.nav-link:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav-link.active{
+  color:#fff;
+  background:rgba(184,134,11,.15);
+  border-left-color:var(--gold);
+  font-weight:600;
+}
+.nav-home{font-size:14px;padding:10px 16px;font-weight:500;margin-bottom:4px}
+.sidebar-nav{display:flex;flex-direction:column;height:100%}
+
+.nav-group{margin-bottom:2px}
+.nav-group-title{
+  padding:8px 16px;
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  user-select:none;
+  transition:color .15s;
+}
+.nav-group-title:hover{color:#fff}
+.caret{
+  display:inline-block;
+  width:0;height:0;
+  border-left:5px solid #cbd5e1;
+  border-top:4px solid transparent;
+  border-bottom:4px solid transparent;
+  transition:transform .2s;
+}
+.nav-group.open .nav-group-title .caret{transform:rotate(90deg);border-left-color:#fff}
+.nav-group-title .badge{
+  margin-left:auto;
+  background:rgba(255,255,255,.1);
+  color:#cbd5e1;
+  font-size:11px;
+  padding:1px 6px;
+  border-radius:8px;
+  font-weight:400;
+}
+.nav-group-items{display:none;padding-left:8px}
+.nav-group.open .nav-group-items{display:block}
+
+.hamburger{
+  display:none;
+  position:fixed;
+  top:12px;left:12px;
+  z-index:200;
+  background:var(--navy);
+  color:#fff;
+  border:none;
+  font-size:20px;
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* ===== MAIN ===== */
+.main{
+  margin-left:max(var(--sidebar-w), calc((100vw - 1160px) / 2));
+  flex:1;
+  position:relative;
+  max-width:1160px;
+  padding:0;
+}
+
+.main::after{
+  content:'';
+  position:fixed;
+  top:0;left:var(--sidebar-w);right:0;bottom:0;
+  pointer-events:none;
+  opacity:.03;
+  z-index:999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== ARTICLE ===== */
+.article{max-width:820px;padding:48px 48px 80px}
+.meta{
+  font-size:13px;
+  color:var(--text2);
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.type-badge{
+  font-size:11px;
+  padding:2px 8px;
+  border-radius:4px;
+  color:#fff;
+  font-weight:600;
+}
+.type-选集精选{background:#7C5E2A}
+.type-诗词{background:#8B2F2F}
+.type-核心思想{background:#5E4A8B}
+.type-工作方法{background:#2A6B4F}
+.type-人物{background:#3A5E8B}
+.type-事件{background:#4A6E2A}
+.type-索引{background:#6B6560}
+
+.article h1{
+  font-family:var(--serif);
+  font-size:28px;
+  line-height:1.3;
+  margin-bottom:24px;
+  font-weight:900;
+  color:var(--navy);
+  letter-spacing:-.5px;
+}
+.article h2{
+  font-family:var(--serif);
+  font-size:21px;
+  margin:36px 0 14px;
+  padding-bottom:8px;
+  border-bottom:2px solid var(--border);
+  font-weight:700;
+  color:var(--navy);
+}
+.article h3{
+  font-family:var(--serif);
+  font-size:17px;
+  margin:24px 0 10px;
+  font-weight:600;
+  color:var(--navy-light);
+}
+.article p{margin:10px 0}
+.article ul,.article ol{padding-left:24px;margin:10px 0}
+.article li{margin:4px 0}
+
+.article a{
+  color:var(--link);
+  text-decoration:none;
+  background:linear-gradient(to bottom,transparent 60%,var(--gold-glow) 60%);
+  transition:background .2s;
+}
+.article a:hover{background:linear-gradient(to bottom,transparent 40%,rgba(184,134,11,.2) 40%)}
+
+.article blockquote{
+  background:var(--cream);
+  border-left:4px solid var(--gold);
+  padding:14px 20px;
+  margin:16px 0;
+  border-radius:0 8px 8px 0;
+  font-style:italic;
+  color:#5C4813;
+  font-family:var(--serif);
+}
+.article blockquote p{margin:0}
+.article blockquote a{background:none;color:var(--gold)}
+.article blockquote a:hover{text-decoration:underline}
+
+.article table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}
+.article th,.article td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+.article th{background:var(--bg2);font-weight:600;color:var(--navy)}
+.article strong{font-weight:700}
+.article hr{border:none;border-top:1px solid var(--border);margin:32px 0}
+.article code{
+  background:var(--bg2);
+  padding:2px 6px;
+  border-radius:3px;
+  font-size:13px;
+  font-family:'SF Mono',Menlo,Consolas,monospace;
+  color:#5C4813;
+}
+
+/* ===== POEM STYLING ===== */
+.poem-text{
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:2.2;
+  color:var(--navy);
+  padding:24px 32px;
+  background:var(--cream);
+  border-radius:12px;
+  border:1px solid var(--border);
+  margin:20px 0;
+  text-align:center;
+}
+
+/* ===== BACKLINKS PANEL ===== */
+.main.has-backlinks{
+  display:grid;
+  grid-template-columns:minmax(0,820px) 280px;
+  gap:0 24px;
+  max-width:1160px;
+}
+.main-content{min-width:0}
+
+.backlinks-panel{
+  grid-column:2;
+  grid-row:1/-1;
+  position:sticky;
+  top:24px;
+  max-height:calc(100vh - 48px);
+  overflow-y:auto;
+  padding:24px 0 24px 20px;
+  border-left:1px solid var(--border);
+  font-size:13px;
+  align-self:start;
+}
+.backlinks-panel::-webkit-scrollbar{width:3px}
+.backlinks-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+.bl-panel-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+.bl-panel-title{
+  font-family:var(--serif);
+  font-size:14px;
+  font-weight:700;
+  color:var(--navy);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.bl-count{
+  font-size:11px;
+  background:var(--bg2);
+  padding:1px 7px;
+  border-radius:10px;
+  color:var(--text2);
+  font-weight:600;
+}
+.bl-panel-actions{display:flex;gap:4px}
+.bl-action{
+  background:none;
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:2px 8px;
+  font-size:11px;
+  color:var(--text2);
+  cursor:pointer;
+  font-family:var(--sans);
+  transition:all .15s;
+}
+.bl-action:hover{border-color:var(--gold);color:var(--gold)}
+
+.bl-group{margin-bottom:4px}
+.bl-group-header{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:5px 0;
+  width:100%;
+  text-align:left;
+  font-size:13px;
+  font-family:var(--sans);
+}
+.bl-group-header:hover{background:rgba(0,0,0,.02);border-radius:4px}
+
+.bl-caret{
+  display:inline-block;
+  width:0;height:0;
+  border:4px solid transparent;
+  border-left:5px solid var(--text2);
+  transition:transform .15s;
+  flex-shrink:0;
+}
+.bl-group.open .bl-caret{transform:rotate(90deg)}
+
+.bl-source-name{
+  color:var(--navy);
+  font-weight:600;
+  flex:1;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.bl-mention-cat{
+  font-size:10px;
+  color:var(--text2);
+  background:var(--bg2);
+  padding:0 5px;
+  border-radius:8px;
+  flex-shrink:0;
+  margin-left:4px;
+}
+
+.bl-snippets{display:none;padding:4px 0 4px 14px}
+.bl-group.open .bl-snippets{display:block}
+
+.bl-snippet{
+  padding:6px 0;
+  border-bottom:1px solid var(--border);
+  line-height:1.6;
+  color:var(--text2);
+  font-size:12px;
+}
+.bl-snippet:last-child{border-bottom:none}
+.bl-go-link{
+  display:inline-block;
+  font-size:11px;
+  color:var(--link);
+  text-decoration:none;
+  padding:4px 0 2px;
+  font-weight:600;
+  transition:color .15s;
+}
+.bl-go-link:hover{color:var(--gold);text-decoration:underline}
+
+/* ===== HOMEPAGE ===== */
+.hero-section{
+  position:relative;
+  padding:72px 48px 56px;
+  max-width:900px;
+  margin:0 auto;
+}
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:20px;
+  opacity:0;
+  animation:fadeUp .6s ease forwards;
+}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(32px,5vw,48px);
+  font-weight:900;
+  line-height:1.25;
+  letter-spacing:-1px;
+  color:var(--navy);
+  margin-bottom:6px;
+  opacity:0;
+  animation:fadeUp .6s ease .1s forwards;
+}
+.hero-title .gold{color:var(--gold)}
+.hero-sub{
+  font-size:17px;
+  color:var(--text2);
+  line-height:1.8;
+  margin-top:16px;
+  max-width:640px;
+  font-family:var(--serif);
+  font-weight:400;
+  opacity:0;
+  animation:fadeUp .6s ease .2s forwards;
+}
+.hero-sub b{color:var(--navy);font-weight:700}
+
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:0;
+  max-width:900px;
+  margin:0 auto 48px;
+  padding:0 48px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  opacity:0;
+  animation:fadeUp .6s ease .3s forwards;
+}
+.stat-item{
+  text-align:center;
+  padding:28px 12px;
+  position:relative;
+  transition:background .3s;
+  text-decoration:none;
+  color:inherit;
+}
+.stat-item:not(:last-child)::after{
+  content:'';
+  position:absolute;
+  right:0;top:20%;
+  height:60%;
+  width:1px;
+  background:var(--border);
+}
+.stat-item:hover{background:var(--gold-glow)}
+.stat-num{
+  font-family:var(--serif);
+  font-size:42px;
+  font-weight:900;
+  color:var(--navy);
+  line-height:1;
+  margin-bottom:6px;
+  letter-spacing:-2px;
+}
+.stat-label{
+  font-size:13px;
+  color:var(--text2);
+  font-weight:500;
+  letter-spacing:.5px;
+}
+
+.main-inner{max-width:900px;padding:0 48px 80px;margin:0 auto}
+
+.nav-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-bottom:56px;
+  opacity:0;
+  animation:fadeUp .6s ease .4s forwards;
+}
+.nav-card{
+  position:relative;
+  padding:28px 20px 24px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  text-decoration:none;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
+  display:block;
+  color:inherit;
+}
+.nav-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:var(--gold);
+  opacity:0;
+  transition:opacity .3s;
+}
+.nav-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(0,0,0,.08);
+  border-color:var(--gold-light);
+}
+.nav-card:hover::before{opacity:1}
+.nav-card-icon{font-size:32px;margin-bottom:14px;display:block;line-height:1}
+.nav-card-title{
+  font-family:var(--serif);
+  font-size:16px;
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:4px;
+}
+.nav-card-sub{font-size:13px;color:var(--text2)}
+.nav-card-arrow{
+  position:absolute;
+  bottom:20px;right:20px;
+  font-size:18px;
+  color:var(--border);
+  transition:all .3s;
+}
+.nav-card:hover .nav-card-arrow{color:var(--gold);transform:translateX(4px)}
+
+.section{margin-bottom:48px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.section-line{flex:1;height:1px;background:var(--border)}
+.section-title{
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:700;
+  color:var(--navy);
+  white-space:nowrap;
+}
+.section-count{
+  font-size:12px;
+  color:var(--gold);
+  font-weight:600;
+  background:var(--gold-glow);
+  padding:3px 10px;
+  border-radius:12px;
+  white-space:nowrap;
+}
+
+.tag-cloud{display:flex;flex-wrap:wrap;gap:10px}
+.tag{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 18px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  font-size:14px;
+  color:var(--text);
+  text-decoration:none;
+  transition:all .25s cubic-bezier(.4,0,.2,1);
+  font-weight:500;
+}
+.tag:hover{
+  border-color:var(--gold);
+  color:var(--navy);
+  box-shadow:0 4px 16px var(--gold-glow);
+  transform:translateY(-2px);
+}
+.tag-n{
+  font-size:11px;
+  font-weight:700;
+  color:#fff;
+  background:var(--gold);
+  padding:2px 8px;
+  border-radius:10px;
+  min-width:20px;
+  text-align:center;
+}
+.tag.tier-1{
+  font-size:16px;
+  padding:10px 22px;
+  font-weight:700;
+  border-color:var(--gold-light);
+  background:linear-gradient(135deg,#FFFDF5,#FFF8E7);
+}
+.tag.tier-1 .tag-n{font-size:12px;padding:3px 10px;background:var(--gold)}
+.tag.tier-2{font-size:15px;padding:9px 20px;font-weight:600}
+
+.people-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:14px;
+}
+.person-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:24px 16px 20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  text-decoration:none;
+  transition:all .3s;
+  text-align:center;
+  color:inherit;
+}
+.person-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+  border-color:var(--gold-light);
+}
+.person-avatar{
+  width:56px;height:56px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--navy),var(--navy-light));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  margin-bottom:12px;
+  color:var(--gold-light);
+  font-family:var(--serif);
+  font-weight:700;
+  box-shadow:0 4px 12px rgba(26,35,50,.15);
+}
+.person-name{
+  font-family:var(--serif);
+  font-size:15px;
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:4px;
+}
+.person-refs{font-size:12px;color:var(--text2)}
+
+.gold-divider{display:flex;align-items:center;gap:16px;margin:56px 0}
+.gold-divider::before,.gold-divider::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--border),transparent);
+}
+.gold-divider-diamond{
+  width:8px;height:8px;
+  background:var(--gold);
+  transform:rotate(45deg);
+  flex-shrink:0;
+}
+
+.footer-promo{
+  position:relative;
+  overflow:hidden;
+  padding:40px;
+  background:var(--navy);
+  border-radius:20px;
+  color:#fff;
+  display:flex;
+  gap:40px;
+  align-items:center;
+}
+.footer-promo::before{
+  content:'';
+  position:absolute;
+  top:-50%;right:-20%;
+  width:400px;height:400px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(184,134,11,.15),transparent 70%);
+}
+.promo-story{flex:1;position:relative;z-index:1;min-width:0}
+.promo-story h3{
+  font-family:var(--serif);
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:12px;
+  color:var(--gold-light);
+}
+.promo-story p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.8;margin:8px 0}
+.promo-credit{
+  margin-top:16px !important;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.12);
+  font-size:13px !important;
+}
+.promo-credit strong{color:var(--gold-light);font-weight:700}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.section{opacity:0;animation:fadeUp .5s ease forwards}
+.section:nth-child(1){animation-delay:.45s}
+.section:nth-child(2){animation-delay:.55s}
+.section:nth-child(3){animation-delay:.65s}
+.section:nth-child(4){animation-delay:.75s}
+.section:nth-child(5){animation-delay:.85s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .main.has-backlinks{display:block}
+  .backlinks-panel{
+    position:static;
+    max-height:none;
+    overflow-y:visible;
+    border-left:none;
+    border-top:1px solid var(--border);
+    padding:24px 16px;
+    margin-top:24px;
+    max-width:820px;
+  }
+}
+
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);transition:transform .3s}
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:block}
+  .main{margin-left:0;max-width:100%}
+  .main::after{left:0}
+  .main.has-backlinks{display:block}
+  .article{padding:48px 16px 60px}
+  .backlinks-panel{padding:16px 12px;margin-top:16px}
+  .hero-section{padding:44px 20px 20px}
+  .hero-eyebrow{font-size:10px;margin-bottom:12px}
+  .hero-title{font-size:26px}
+  .hero-sub{font-size:14px;line-height:1.6;margin-top:10px}
+  .stats-row{padding:0 16px;margin:0 0 20px;grid-template-columns:repeat(3,1fr)}
+  .stat-item{padding:16px 4px}
+  .stat-num{font-size:28px;letter-spacing:-1px}
+  .stat-label{font-size:11px}
+  .main-inner{padding:0 20px 60px}
+  .nav-cards{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px}
+  .nav-card{padding:20px 14px 18px}
+  .nav-card-icon{font-size:24px;margin-bottom:8px}
+  .nav-card-title{font-size:14px}
+  .nav-card-sub{font-size:12px}
+  .footer-promo{flex-direction:column;text-align:center;padding:28px 20px;gap:24px}
+  .people-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<button class="hamburger" aria-label="菜单" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+<aside class="sidebar">
+  <div class="sidebar-header"><a href="/index.html" class="logo">毛泽东知识库</a></div>
+  <div class="sidebar-nav">
+    <a href="/index.html" class="nav-link nav-home">🏛 首页</a>
+<div class="nav-group open">
+  <div class="nav-group-title"><span class="caret"></span>索引<span class="badge">0</span></div>
+  <div class="nav-group-items">
+  </div>
+</div>
+<div class="nav-group">
+  <div class="nav-group-title"><span class="caret"></span>选集精选<span class="badge">26</span></div>
+  <div class="nav-group-items">
+    <a href="/selected-works/1925 中国社会各阶级的分析.html" class="nav-link" title="1925 中国社会各阶级的分析">1925 中国社会各阶级的分析</a>
+    <a href="/selected-works/1927 湖南农民运动考察报告.html" class="nav-link" title="1927 湖南农民运动考察报告">1927 湖南农民运动考察报告</a>
+    <a href="/selected-works/1928 中国的红色政权为什么能够存在.html" class="nav-link" title="1928 中国的红色政权为什么能够存在">1928 中国的红色政权为什么能够存在</a>
+    <a href="/selected-works/1929 古田会议决议.html" class="nav-link" title="1929 古田会议决议">1929 古田会议决议</a>
+    <a href="/selected-works/1930 反对本本主义.html" class="nav-link" title="1930 反对本本主义">1930 反对本本主义</a>
+    <a href="/selected-works/1930 星星之火可以燎原.html" class="nav-link" title="1930 星星之火可以燎原">1930 星星之火可以燎原</a>
+    <a href="/selected-works/1933 必须注意经济工作.html" class="nav-link" title="1933 必须注意经济工作">1933 必须注意经济工作</a>
+    <a href="/selected-works/1934 关心群众生活注意工作方法.html" class="nav-link" title="1934 关心群众生活注意工作方法">1934 关心群众生活注意工作方法</a>
+    <a href="/selected-works/1935 论反对日本帝国主义的策略.html" class="nav-link" title="1935 论反对日本帝国主义的策略">1935 论反对日本帝国主义的策略</a>
+    <a href="/selected-works/1936 中国革命战争的战略问题.html" class="nav-link" title="1936 中国革命战争的战略问题">1936 中国革命战争的战略问题</a>
+    <a href="/selected-works/1937 反对自由主义.html" class="nav-link" title="1937 反对自由主义">1937 反对自由主义</a>
+    <a href="/selected-works/1937 实践论.html" class="nav-link" title="1937 实践论">1937 实践论</a>
+    <a href="/selected-works/1937 矛盾论.html" class="nav-link" title="1937 矛盾论">1937 矛盾论</a>
+    <a href="/selected-works/1938 中国共产党在民族战争中的地位.html" class="nav-link" title="1938 中国共产党在民族战争中的地位">1938 中国共产党在民族战争中的地位</a>
+    <a href="/selected-works/1938 论持久战.html" class="nav-link" title="1938 论持久战">1938 论持久战</a>
+    <a href="/selected-works/1939 中国革命和中国共产党.html" class="nav-link" title="1939 中国革命和中国共产党">1939 中国革命和中国共产党</a>
+    <a href="/selected-works/1940 新民主主义论.html" class="nav-link" title="1940 新民主主义论">1940 新民主主义论</a>
+    <a href="/selected-works/1941 改造我们的学习.html" class="nav-link" title="1941 改造我们的学习">1941 改造我们的学习</a>
+    <a href="/selected-works/1941 整顿党的作风.html" class="nav-link" title="1941 整顿党的作风">1941 整顿党的作风</a>
+    <a href="/selected-works/1942 反对党八股.html" class="nav-link" title="1942 反对党八股">1942 反对党八股</a>
+    <a href="/selected-works/1943 组织起来.html" class="nav-link" title="1943 组织起来">1943 组织起来</a>
+    <a href="/selected-works/1944 为人民服务.html" class="nav-link" title="1944 为人民服务">1944 为人民服务</a>
+    <a href="/selected-works/1945 愚公移山.html" class="nav-link" title="1945 愚公移山">1945 愚公移山</a>
+    <a href="/selected-works/1945 论联合政府.html" class="nav-link" title="1945 论联合政府">1945 论联合政府</a>
+    <a href="/selected-works/1946 关于重庆谈判.html" class="nav-link" title="1946 关于重庆谈判">1946 关于重庆谈判</a>
+    <a href="/selected-works/1947 目前形势和我们的任务.html" class="nav-link" title="1947 目前形势和我们的任务">1947 目前形势和我们的任务</a>
+  </div>
+</div>
+<div class="nav-group">
+  <div class="nav-group-title"><span class="caret"></span>诗词<span class="badge">15</span></div>
+  <div class="nav-group-items">
+    <a href="/poems/1925 沁园春·长沙.html" class="nav-link" title="1925 沁园春·长沙">1925 沁园春·长沙</a>
+    <a href="/poems/1927 菩萨蛮·黄鹤楼.html" class="nav-link" title="1927 菩萨蛮·黄鹤楼">1927 菩萨蛮·黄鹤楼</a>
+    <a href="/poems/1928 西江月·井冈山.html" class="nav-link" title="1928 西江月·井冈山">1928 西江月·井冈山</a>
+    <a href="/poems/1929 清平乐·蒋桂战争.html" class="nav-link" title="1929 清平乐·蒋桂战争">1929 清平乐·蒋桂战争</a>
+    <a href="/poems/1931 渔家傲·反第一次大"围剿".html" class="nav-link" title="1931 渔家傲·反第一次大"围剿"">1931 渔家傲·反第一次大"围剿"</a>
+    <a href="/poems/1933 菩萨蛮·大柏地.html" class="nav-link" title="1933 菩萨蛮·大柏地">1933 菩萨蛮·大柏地</a>
+    <a href="/poems/1934 清平乐·会昌.html" class="nav-link" title="1934 清平乐·会昌">1934 清平乐·会昌</a>
+    <a href="/poems/1935 七律·长征.html" class="nav-link" title="1935 七律·长征">1935 七律·长征</a>
+    <a href="/poems/1935 忆秦娥·娄山关.html" class="nav-link" title="1935 忆秦娥·娄山关">1935 忆秦娥·娄山关</a>
+    <a href="/poems/1935 念奴娇·昆仑.html" class="nav-link" title="1935 念奴娇·昆仑">1935 念奴娇·昆仑</a>
+    <a href="/poems/1935 清平乐·六盘山.html" class="nav-link" title="1935 清平乐·六盘山">1935 清平乐·六盘山</a>
+    <a href="/poems/1936 沁园春·雪.html" class="nav-link" title="1936 沁园春·雪">1936 沁园春·雪</a>
+    <a href="/poems/1949 七律·人民解放军占领南京.html" class="nav-link" title="1949 七律·人民解放军占领南京">1949 七律·人民解放军占领南京</a>
+    <a href="/poems/1954 浪淘沙·北戴河.html" class="nav-link" title="1954 浪淘沙·北戴河">1954 浪淘沙·北戴河</a>
+    <a href="/poems/1956 水调歌头·游泳.html" class="nav-link" title="1956 水调歌头·游泳">1956 水调歌头·游泳</a>
+  </div>
+</div>
+<div class="nav-group open">
+  <div class="nav-group-title"><span class="caret"></span>核心思想<span class="badge">22</span></div>
+  <div class="nav-group-items">
+    <a href="/concepts/01-实践论.html" class="nav-link" title="01-实践论">01-实践论</a>
+    <a href="/concepts/02-矛盾论.html" class="nav-link" title="02-矛盾论">02-矛盾论</a>
+    <a href="/concepts/03-量变质变.html" class="nav-link" title="03-量变质变">03-量变质变</a>
+    <a href="/concepts/04-否定之否定.html" class="nav-link" title="04-否定之否定">04-否定之否定</a>
+    <a href="/concepts/05-新民主主义论.html" class="nav-link" title="05-新民主主义论">05-新民主主义论</a>
+    <a href="/concepts/06-持久战.html" class="nav-link" title="06-持久战">06-持久战</a>
+    <a href="/concepts/07-农村包围城市.html" class="nav-link" title="07-农村包围城市">07-农村包围城市</a>
+    <a href="/concepts/08-枪杆子里面出政权.html" class="nav-link" title="08-枪杆子里面出政权">08-枪杆子里面出政权</a>
+    <a href="/concepts/09-统一战线.html" class="nav-link" title="09-统一战线">09-统一战线</a>
+    <a href="/concepts/10-群众路线.html" class="nav-link" title="10-群众路线">10-群众路线</a>
+    <a href="/concepts/11-游击战.html" class="nav-link" title="11-游击战">11-游击战</a>
+    <a href="/concepts/12-人民战争.html" class="nav-link" title="12-人民战争">12-人民战争</a>
+    <a href="/concepts/13-集中优势兵力.html" class="nav-link" title="13-集中优势兵力">13-集中优势兵力</a>
+    <a href="/concepts/14-战略上藐视战术上重视.html" class="nav-link" title="14-战略上藐视战术上重视">14-战略上藐视战术上重视</a>
+    <a href="/concepts/15-人民民主专政.html" class="nav-link" title="15-人民民主专政">15-人民民主专政</a>
+    <a href="/concepts/16-两类矛盾.html" class="nav-link" title="16-两类矛盾">16-两类矛盾</a>
+    <a href="/concepts/17-百花齐放百家争鸣.html" class="nav-link" title="17-百花齐放百家争鸣">17-百花齐放百家争鸣</a>
+    <a href="/concepts/18-自力更生.html" class="nav-link" title="18-自力更生">18-自力更生</a>
+    <a href="/concepts/19-古为今用洋为中用.html" class="nav-link" title="19-古为今用洋为中用">19-古为今用洋为中用</a>
+    <a href="/concepts/20-实事求是.html" class="nav-link" title="20-实事求是">20-实事求是</a>
+    <a href="/concepts/21-批评与自我批评.html" class="nav-link" title="21-批评与自我批评">21-批评与自我批评</a>
+    <a href="/concepts/22-愚公移山精神.html" class="nav-link active" title="22-愚公移山精神">22-愚公移山精神</a>
+  </div>
+</div>
+<div class="nav-group">
+  <div class="nav-group-title"><span class="caret"></span>工作方法<span class="badge">10</span></div>
+  <div class="nav-group-items">
+    <a href="/methods/两类矛盾学说.html" class="nav-link" title="两类矛盾学说">两类矛盾学说</a>
+    <a href="/methods/十大关系.html" class="nav-link" title="十大关系">十大关系</a>
+    <a href="/methods/批评与自我批评.html" class="nav-link" title="批评与自我批评">批评与自我批评</a>
+    <a href="/methods/持久战三阶段.html" class="nav-link" title="持久战三阶段">持久战三阶段</a>
+    <a href="/methods/游击战十六字诀.html" class="nav-link" title="游击战十六字诀">游击战十六字诀</a>
+    <a href="/methods/矛盾分析法.html" class="nav-link" title="矛盾分析法">矛盾分析法</a>
+    <a href="/methods/统一战线方法.html" class="nav-link" title="统一战线方法">统一战线方法</a>
+    <a href="/methods/群众路线.html" class="nav-link" title="群众路线">群众路线</a>
+    <a href="/methods/调查研究方法.html" class="nav-link" title="调查研究方法">调查研究方法</a>
+    <a href="/methods/集中优势兵力.html" class="nav-link" title="集中优势兵力">集中优势兵力</a>
+  </div>
+</div>
+<div class="nav-group">
+  <div class="nav-group-title"><span class="caret"></span>事件<span class="badge">10</span></div>
+  <div class="nav-group-items">
+    <a href="/events/1921 建党.html" class="nav-link" title="1921 建党">1921 建党</a>
+    <a href="/events/1927 秋收起义.html" class="nav-link" title="1927 秋收起义">1927 秋收起义</a>
+    <a href="/events/1935 遵义会议.html" class="nav-link" title="1935 遵义会议">1935 遵义会议</a>
+    <a href="/events/1937 延安整风运动.html" class="nav-link" title="1937 延安整风运动">1937 延安整风运动</a>
+    <a href="/events/1945 重庆谈判.html" class="nav-link" title="1945 重庆谈判">1945 重庆谈判</a>
+    <a href="/events/1949 开国大典.html" class="nav-link" title="1949 开国大典">1949 开国大典</a>
+    <a href="/events/1950 抗美援朝.html" class="nav-link" title="1950 抗美援朝">1950 抗美援朝</a>
+    <a href="/events/1957 反右运动.html" class="nav-link" title="1957 反右运动">1957 反右运动</a>
+    <a href="/events/1959 庐山会议.html" class="nav-link" title="1959 庐山会议">1959 庐山会议</a>
+    <a href="/events/1972 尼克松访华.html" class="nav-link" title="1972 尼克松访华">1972 尼克松访华</a>
+  </div>
+</div>
+<div class="nav-group">
+  <div class="nav-group-title"><span class="caret"></span>人物<span class="badge">9</span></div>
+  <div class="nav-group-items">
+    <a href="/people/deng-xiaoping.html" class="nav-link" title="deng-xiaoping">deng-xiaoping</a>
+    <a href="/people/jiang-jieshi.html" class="nav-link" title="jiang-jieshi">jiang-jieshi</a>
+    <a href="/people/lin-biao.html" class="nav-link" title="lin-biao">lin-biao</a>
+    <a href="/people/liu-shaoqi.html" class="nav-link" title="liu-shaoqi">liu-shaoqi</a>
+    <a href="/people/wang-ming.html" class="nav-link" title="wang-ming">wang-ming</a>
+    <a href="/people/zhang-guotao.html" class="nav-link" title="zhang-guotao">zhang-guotao</a>
+    <a href="/people/zhou-enlai.html" class="nav-link" title="zhou-enlai">zhou-enlai</a>
+    <a href="/people/zhou-gucheng.html" class="nav-link" title="zhou-gucheng">zhou-gucheng</a>
+    <a href="/people/zhu-de.html" class="nav-link" title="zhu-de">zhu-de</a>
+  </div>
+</div>
+
+  </div>
+</aside>
+<main class="main">
+<div class="article"><div class="meta"><span class="type-badge type-核心思想">核心思想</span></div>
+<h1 id="_1">愚公移山精神</h1>
+<h2 id="_2">定义与起源</h2>
+<p>"愚公移山"是毛泽东在1945年6月中共七大闭幕词中引用的中国古代寓言故事。毛泽东借用《列子·汤问》中愚公移山的故事，号召全党和全国人民以愚公移山的精神，下定决心，不怕牺牲，排除万难，去争取胜利。愚公移山精神的核心是：坚定信念、持之以恒、不怕困难、依靠群众。这一思想成为毛泽东思想中关于奋斗精神的经典表达。</p>
+<h2 id="_3">核心要义</h2>
+<h3 id="1">1. 下定决心，不怕牺牲</h3>
+<blockquote>
+<p>"下定决心，不怕牺牲，排除万难，去争取胜利。"</p>
+</blockquote>
+<p>这是愚公移山精神的核心。面对强大的敌人和艰巨的任务，必须有坚定的决心和不怕牺牲的勇气。</p>
+<h3 id="2">2. 持之以恒，久久为功</h3>
+<blockquote>
+<p>"我死了以后有我的儿子，儿子死了，又有孙子，子子孙孙是没有穷尽的。"</p>
+</blockquote>
+<p>愚公移山精神强调的是持之以恒的毅力。革命和建设都是长期的事业，不可能一蹴而就，需要一代又一代人的持续努力。</p>
+<h3 id="3">3. 依靠群众，发动群众</h3>
+<blockquote>
+<p>"全国人民大众一齐起来和我们一道挖这两座山，有什么挖不平呢？"</p>
+</blockquote>
+<p>愚公移山精神不是个人英雄主义，而是依靠群众、发动群众的集体主义精神。只要团结和发动广大人民群众，就没有克服不了的困难。</p>
+<h3 id="4">4. 敢于斗争，敢于胜利</h3>
+<blockquote>
+<p>"我们一定要坚持下去，一定要不断地工作，我们也会感动上帝的。"</p>
+</blockquote>
+<p>"上帝"指的是人民群众。只要坚持斗争，坚持为人民服务，就能得到人民群众的支持和拥护。</p>
+<h3 id="5">5. 乐观主义精神</h3>
+<blockquote>
+<p>"愚公是挖山不止，感动了上帝，他就派了两个神仙下凡，把两座山背走了。"</p>
+</blockquote>
+<p>愚公移山精神体现了革命乐观主义精神。即使面对再大的困难，也要保持乐观的态度，相信最终一定能够胜利。</p>
+<h2 id="_4">实战案例</h2>
+<ul>
+<li><strong>中共七大闭幕词（1945年6月）</strong>：毛泽东以"愚公移山"为题发表闭幕词，号召全党以愚公移山的精神，推翻帝国主义和封建主义两座大山。</li>
+<li><strong>抗日战争（1937-1945）</strong>：以持久战的战略和愚公移山的精神，坚持八年抗战，最终取得胜利。</li>
+<li><strong>社会主义建设时期</strong>：以愚公移山的精神，克服重重困难，进行大规模的经济建设。</li>
+</ul>
+<h2 id="_5">思想演变</h2>
+<table>
+<thead>
+<tr>
+<th>时期</th>
+<th>特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>萌芽期</td>
+<td>在长期革命实践中形成奋斗精神</td>
+</tr>
+<tr>
+<td>形成期（1945）</td>
+<td>在七大闭幕词中以"愚公移山"为喻，系统阐述</td>
+</tr>
+<tr>
+<td>发展期（1945年后）</td>
+<td>成为中国共产党的精神财富</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">原话精选</h2>
+<ol>
+<li>"下定决心，不怕牺牲，排除万难，去争取胜利。"</li>
+<li>"我们一定要坚持下去，一定要不断地工作，我们也会感动上帝的。"</li>
+<li>"全国人民大众一齐起来和我们一道挖这两座山，有什么挖不平呢？"</li>
+<li>"愚公移山，改造中国。"</li>
+<li>"我死了以后有我的儿子，儿子死了，又有孙子，子子孙孙是没有穷尽的。"</li>
+</ol>
+<h2 id="_7">相关概念</h2>
+<ul>
+<li>自力更生 — 愚公移山精神的实践体现</li>
+<li><a href="/methods/群众路线.html">群众路线</a> — 愚公移山精神的群众基础</li>
+<li>实践论 — 愚公移山精神的认识论基础</li>
+<li>否定之否定 — 愚公移山精神的辩证法</li>
+<li>持久战 — 愚公移山精神在战争中的体现</li>
+</ul></div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.nav-group-title').forEach(function(el) {
+    el.addEventListener('click', function() {
+      this.parentElement.classList.toggle('open');
+    });
+  });
+
+  document.querySelectorAll('.bl-group-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      this.closest('.bl-group').classList.toggle('open');
+    });
+  });
+
+  document.querySelectorAll('.bl-expand-all').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      this.closest('.backlinks-panel').querySelectorAll('.bl-group').forEach(function(g) {
+        g.classList.add('open');
+      });
+    });
+  });
+  document.querySelectorAll('.bl-collapse-all').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      this.closest('.backlinks-panel').querySelectorAll('.bl-group').forEach(function(g) {
+        g.classList.remove('open');
+      });
+    });
+  });
+});
+</script>
+</body>
+</html>
