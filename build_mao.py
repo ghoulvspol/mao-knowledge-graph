@@ -13,8 +13,8 @@ from pathlib import Path
 
 # ── CONFIG ───────────────────────────────────────────────────────────────────
 
-VAULT = Path("/Users/htsage/Documents/Obsidian Vault/毛泽东/毛泽东")
-OUT = Path("/Users/htsage/project/mao-knowledge-graph/mao-site")
+VAULT = Path(__file__).parent / "vault"
+OUT = Path(__file__).parent / "mao-site"
 SITE_TITLE = "毛泽东知识库"
 SITE_LOGO = "M"
 
